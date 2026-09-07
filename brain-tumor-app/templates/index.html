@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brain Tumor Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Brain Tumor Detection</h1>
+            <p>Upload an MRI scan and get an instant prediction</p>
+        </header>
+
+        <div class="card">
+            <div class="upload-area" id="uploadArea">
+                <input type="file" id="imageInput" accept="image/*" hidden>
+                <div id="uploadPrompt">
+                    <div class="icon">MRI</div>
+                    <p>Click to upload an MRI image</p>
+                    <span>JPG, PNG supported</span>
+                </div>
+                <img id="preview" alt="Preview" hidden>
+            </div>
+
+            <button id="predictBtn" disabled>Predict</button>
+
+            <div class="samples">
+                <p class="samples-title">Or try a sample scan:</p>
+                <div class="samples-row">
+                    <button class="sample-btn" onclick="predictSample('glioma')">Glioma</button>
+                    <button class="sample-btn" onclick="predictSample('meningioma')">Meningioma</button>
+                    <button class="sample-btn" onclick="predictSample('pituitary')">Pituitary</button>
+                    <button class="sample-btn" onclick="predictSample('notumor')">No Tumor</button>
+                </div>
+            </div>
+
+            <div id="result" hidden>
+                <h2 id="resultTitle">Result</h2>
+                <p id="resultText"></p>
+                <div id="probBox"></div>
+            </div>
+
+            <div id="heatmapBox" hidden>
+                <h3>Where is the model looking?</h3>
+                <p class="heatmap-note">Red = strong focus areas</p>
+                <div class="heatmap-row">
+                    <div class="heatmap-cell">
+                        <span>Original</span>
+                        <img id="heatmapOriginal" alt="Original">
+                    </div>
+                    <div class="heatmap-cell">
+                        <span>Overlay</span>
+                        <img id="heatmapImage" alt="Grad-CAM overlay">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Model: EfficientNetB0 (Transfer Learning) &middot; 4 classes: glioma, meningioma, notumor, pituitary</p>
+            <p class="disclaimer">Not a medical device. For educational/demo purposes only.</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
