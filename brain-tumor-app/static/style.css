@@ -1,0 +1,273 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #e6f7ff;
+}
+
+.container {
+    width: 100%;
+    max-width: 520px;
+    padding: 24px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+header h1 {
+    font-size: 32px;
+    background: linear-gradient(90deg, #4fc3f7, #81d4fa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+header p {
+    color: #9ad8e8;
+    margin-top: 6px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    padding: 24px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.upload-area {
+    border: 2px dashed rgba(79, 195, 247, 0.6);
+    border-radius: 12px;
+    padding: 32px 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.3s, background 0.3s;
+    margin-bottom: 18px;
+}
+
+.upload-area:hover {
+    border-color: #4fc3f7;
+    background: rgba(79, 195, 247, 0.08);
+}
+
+.upload-area .icon {
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #4fc3f7;
+    margin-bottom: 8px;
+}
+
+.upload-area p {
+    font-size: 16px;
+}
+
+.upload-area span {
+    font-size: 13px;
+    color: #9ad8e8;
+}
+
+#preview {
+    max-width: 100%;
+    max-height: 320px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    background: linear-gradient(90deg, #0288d1, #00acc1);
+    color: #fff;
+    transition: transform 0.15s, opacity 0.3s;
+}
+
+button:hover:not(:disabled) {
+    transform: translateY(-2px);
+}
+
+button:disabled {
+    background: #546e7a;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.samples {
+    margin-top: 16px;
+    text-align: center;
+}
+
+.samples-title {
+    font-size: 13px;
+    color: #9ad8e8;
+    margin-bottom: 8px;
+}
+
+.samples-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.sample-btn {
+    width: auto;
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    background: rgba(79, 195, 247, 0.15);
+    border: 1px solid rgba(79, 195, 247, 0.5);
+    color: #b3e9ff;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+}
+
+.sample-btn:hover {
+    background: rgba(79, 195, 247, 0.35);
+    transform: translateY(-1px);
+}
+
+#result {
+    margin-top: 22px;
+    padding: 18px;
+    border-radius: 12px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+#resultTitle {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+#resultText {
+    font-size: 26px;
+    font-weight: 700;
+}
+
+#resultText.tumor {
+    color: #ef5350;
+}
+
+#resultText.no-tumor {
+    color: #66bb6a;
+}
+
+#probBox {
+    margin-top: 12px;
+    text-align: left;
+    font-size: 14px;
+    color: #b0e0f0;
+}
+
+.prob-grid {
+    display: flex;
+    gap: 10px;
+    margin-top: 6px;
+}
+
+.prob-item {
+    flex: 1;
+    text-align: center;
+    padding: 8px 6px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+.prob-label {
+    display: block;
+    font-weight: 600;
+}
+
+.prob-val {
+    display: block;
+    font-size: 16px;
+    margin: 4px 0;
+}
+
+.bar {
+    height: 6px;
+    border-radius: 3px;
+    background: #004d66;
+    overflow: hidden;
+}
+
+.bar > div {
+    height: 100%;
+    background: linear-gradient(90deg, #4fc3f7, #00e5ff);
+}
+
+#heatmapBox {
+    margin-top: 22px;
+    padding: 18px;
+    border-radius: 12px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+#heatmapBox h3 {
+    font-size: 18px;
+    margin-bottom: 4px;
+}
+
+.heatmap-note {
+    font-size: 12px;
+    color: #9ad8e8;
+    margin-bottom: 12px;
+}
+
+.heatmap-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.heatmap-cell {
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+}
+
+.heatmap-cell span {
+    display: block;
+    font-size: 12px;
+    color: #9ad8e8;
+    margin-bottom: 6px;
+}
+
+.heatmap-cell img {
+    width: 100%;
+    max-width: 240px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+footer {
+    text-align: center;
+    margin-top: 22px;
+    font-size: 13px;
+    color: #7fb3c4;
+}
+
+footer .disclaimer {
+    margin-top: 4px;
+    font-size: 12px;
+    color: #5d8899;
+}
