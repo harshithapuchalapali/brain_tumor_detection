@@ -1,3 +1,19 @@
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) document.documentElement.dataset.theme = savedTheme;
+
+const themeToggle = document.getElementById('themeToggle');
+function applyTheme() {
+    const isLight = document.documentElement.dataset.theme === 'light';
+    themeToggle.textContent = isLight ? '\uD83C\uDF19' : '\u2600\uFE0F';
+}
+themeToggle.addEventListener('click', () => {
+    const isLight = document.documentElement.dataset.theme === 'light';
+    document.documentElement.dataset.theme = isLight ? 'dark' : 'light';
+    localStorage.setItem('theme', isLight ? 'dark' : 'light');
+    applyTheme();
+});
+applyTheme();
+
 async function predictSample(label) {
     const url = '/static/samples/' + label + '.jpg';
     try {

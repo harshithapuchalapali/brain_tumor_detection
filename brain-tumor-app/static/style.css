@@ -1,3 +1,49 @@
+:root {
+    --text: #e6f7ff;
+    --muted: #9ad8e8;
+    --card-bg: rgba(255, 255, 255, 0.07);
+    --card-border: rgba(255, 255, 255, 0.15);
+    --accent: #4fc3f7;
+    --accent-2: #00e5ff;
+    --hover: rgba(79, 195, 247, 0.08);
+    --sample-bg: rgba(79, 195, 247, 0.15);
+    --sample-border: rgba(79, 195, 247, 0.5);
+    --sample-text: #b3e9ff;
+    --sample-hover: rgba(79, 195, 247, 0.35);
+    --panel-bg: rgba(0, 0, 0, 0.25);
+    --item-bg: rgba(0, 0, 0, 0.2);
+    --bar-bg: #004d66;
+    --shadow: rgba(0, 0, 0, 0.4);
+    --heat-border: rgba(255, 255, 255, 0.2);
+    --footer: #7fb3c4;
+    --tumor: #ef5350;
+    --no-tumor: #66bb6a;
+    --bg: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+}
+
+[data-theme="light"] {
+    --text: #0d1b2a;
+    --muted: #4a6b7f;
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --card-border: rgba(0, 0, 0, 0.08);
+    --accent: #0288d1;
+    --accent-2: #00acc1;
+    --hover: rgba(2, 136, 209, 0.08);
+    --sample-bg: rgba(2, 136, 209, 0.1);
+    --sample-border: rgba(2, 136, 209, 0.45);
+    --sample-text: #026aa7;
+    --sample-hover: rgba(2, 136, 209, 0.2);
+    --panel-bg: rgba(255, 255, 255, 0.72);
+    --item-bg: rgba(0, 0, 0, 0.05);
+    --bar-bg: #c3e2f2;
+    --shadow: rgba(0, 0, 0, 0.18);
+    --heat-border: rgba(0, 0, 0, 0.12);
+    --footer: #5d7f91;
+    --tumor: #c62828;
+    --no-tumor: #2e7d32;
+    --bg: linear-gradient(135deg, #e0f7fa, #b3e5fc, #a7c8e8);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -6,50 +52,74 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    background: var(--bg);
     min-height: 100vh;
     display: flex;
     justify-content: center;
+    align-items: flex-start;
+    color: var(--text);
+    transition: color 0.4s, background 0.4s;
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 14px;
+    right: 14px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    padding: 0;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: var(--text);
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
     align-items: center;
-    color: #e6f7ff;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+    z-index: 10;
+    box-shadow: 0 4px 12px var(--shadow);
 }
 
 .container {
     width: 100%;
-    max-width: 520px;
-    padding: 24px;
+    max-width: 560px;
+    padding: 68px 16px 24px;
 }
 
 header {
     text-align: center;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 }
 
 header h1 {
-    font-size: 32px;
-    background: linear-gradient(90deg, #4fc3f7, #81d4fa);
+    font-size: 26px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 header p {
-    color: #9ad8e8;
+    color: var(--muted);
     margin-top: 6px;
+    font-size: 14px;
 }
 
 .card {
-    background: rgba(255, 255, 255, 0.07);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
     border-radius: 16px;
-    padding: 24px;
+    padding: 18px;
     backdrop-filter: blur(8px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 10px 30px var(--shadow);
+    transition: background 0.4s, border-color 0.4s;
 }
 
 .upload-area {
     border: 2px dashed rgba(79, 195, 247, 0.6);
     border-radius: 12px;
-    padding: 32px 16px;
+    padding: 28px 14px;
     text-align: center;
     cursor: pointer;
     transition: border-color 0.3s, background 0.3s;
@@ -57,25 +127,25 @@ header p {
 }
 
 .upload-area:hover {
-    border-color: #4fc3f7;
-    background: rgba(79, 195, 247, 0.08);
+    border-color: var(--accent);
+    background: var(--hover);
 }
 
 .upload-area .icon {
-    font-size: 40px;
+    font-size: 36px;
     font-weight: 700;
     letter-spacing: 2px;
-    color: #4fc3f7;
+    color: var(--accent);
     margin-bottom: 8px;
 }
 
 .upload-area p {
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .upload-area span {
     font-size: 13px;
-    color: #9ad8e8;
+    color: var(--muted);
 }
 
 #preview {
@@ -93,7 +163,7 @@ button {
     font-size: 17px;
     font-weight: 600;
     cursor: pointer;
-    background: linear-gradient(90deg, #0288d1, #00acc1);
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
     color: #fff;
     transition: transform 0.15s, opacity 0.3s;
 }
@@ -106,6 +176,7 @@ button:disabled {
     background: #546e7a;
     cursor: not-allowed;
     opacity: 0.6;
+    color: #fff;
 }
 
 .samples {
@@ -115,7 +186,7 @@ button:disabled {
 
 .samples-title {
     font-size: 13px;
-    color: #9ad8e8;
+    color: var(--muted);
     margin-bottom: 8px;
 }
 
@@ -131,16 +202,16 @@ button:disabled {
     padding: 8px 14px;
     font-size: 13px;
     font-weight: 600;
-    background: rgba(79, 195, 247, 0.15);
-    border: 1px solid rgba(79, 195, 247, 0.5);
-    color: #b3e9ff;
+    background: var(--sample-bg);
+    border: 1px solid var(--sample-border);
+    color: var(--sample-text);
     border-radius: 20px;
     cursor: pointer;
     transition: background 0.2s, transform 0.15s;
 }
 
 .sample-btn:hover {
-    background: rgba(79, 195, 247, 0.35);
+    background: var(--sample-hover);
     transform: translateY(-1px);
 }
 
@@ -149,7 +220,8 @@ button:disabled {
     padding: 18px;
     border-radius: 12px;
     text-align: center;
-    background: rgba(0, 0, 0, 0.25);
+    background: var(--panel-bg);
+    transition: background 0.4s;
 }
 
 #resultTitle {
@@ -160,34 +232,35 @@ button:disabled {
 #resultText {
     font-size: 26px;
     font-weight: 700;
+    word-break: break-word;
 }
 
 #resultText.tumor {
-    color: #ef5350;
+    color: var(--tumor);
 }
 
 #resultText.no-tumor {
-    color: #66bb6a;
+    color: var(--no-tumor);
 }
 
 #probBox {
     margin-top: 12px;
     text-align: left;
     font-size: 14px;
-    color: #b0e0f0;
+    color: var(--muted);
 }
 
 .prob-grid {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
     margin-top: 6px;
 }
 
 .prob-item {
-    flex: 1;
     text-align: center;
     padding: 8px 6px;
-    background: rgba(0, 0, 0, 0.2);
+    background: var(--item-bg);
     border-radius: 8px;
 }
 
@@ -198,20 +271,20 @@ button:disabled {
 
 .prob-val {
     display: block;
-    font-size: 16px;
+    font-size: 15px;
     margin: 4px 0;
 }
 
 .bar {
     height: 6px;
     border-radius: 3px;
-    background: #004d66;
+    background: var(--bar-bg);
     overflow: hidden;
 }
 
 .bar > div {
     height: 100%;
-    background: linear-gradient(90deg, #4fc3f7, #00e5ff);
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
 }
 
 #heatmapBox {
@@ -219,7 +292,8 @@ button:disabled {
     padding: 18px;
     border-radius: 12px;
     text-align: center;
-    background: rgba(0, 0, 0, 0.25);
+    background: var(--panel-bg);
+    transition: background 0.4s;
 }
 
 #heatmapBox h3 {
@@ -229,12 +303,13 @@ button:disabled {
 
 .heatmap-note {
     font-size: 12px;
-    color: #9ad8e8;
+    color: var(--muted);
     margin-bottom: 12px;
 }
 
 .heatmap-row {
     display: flex;
+    flex-direction: column;
     gap: 12px;
     justify-content: center;
 }
@@ -248,26 +323,76 @@ button:disabled {
 .heatmap-cell span {
     display: block;
     font-size: 12px;
-    color: #9ad8e8;
+    color: var(--muted);
     margin-bottom: 6px;
 }
 
 .heatmap-cell img {
     width: 100%;
-    max-width: 240px;
     border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid var(--heat-border);
 }
 
 footer {
     text-align: center;
     margin-top: 22px;
     font-size: 13px;
-    color: #7fb3c4;
+    color: var(--footer);
 }
 
 footer .disclaimer {
     margin-top: 4px;
     font-size: 12px;
-    color: #5d8899;
+    color: var(--footer);
+    opacity: 0.8;
+}
+
+@media (min-width: 640px) {
+    body {
+        align-items: center;
+    }
+
+    .container {
+        padding: 24px;
+    }
+
+    header {
+        margin-bottom: 24px;
+    }
+
+    header h1 {
+        font-size: 32px;
+    }
+
+    .card {
+        padding: 24px;
+    }
+
+    .upload-area {
+        padding: 32px 16px;
+    }
+
+    .upload-area .icon {
+        font-size: 40px;
+    }
+
+    .upload-area p {
+        font-size: 16px;
+    }
+
+    .prob-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .prob-val {
+        font-size: 16px;
+    }
+
+    .heatmap-row {
+        flex-direction: row;
+    }
+
+    .heatmap-cell img {
+        max-width: 240px;
+    }
 }
